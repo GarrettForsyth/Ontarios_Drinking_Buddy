@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="internet_unavailable">Unable to connect to internet!</string>
+    <string name="unknown_network_error">An unknown network error has occurred.</string>
+</resources>

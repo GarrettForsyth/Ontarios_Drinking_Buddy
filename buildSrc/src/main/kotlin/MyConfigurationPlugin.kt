@@ -20,14 +20,17 @@ class MyConfigurationPlugin : Plugin<Project> {
                     val extension = project.extensions.getByType(
                         LibraryExtension::class.java
                     )
+                    extension.configureCommon()
                     extension.configureLibrary()
                 }
                 is AppPlugin -> {
                     val extension = project.extensions.getByType(
                         AppExtension::class.java)
-                    extension.configureLibrary()
+                    extension.configureCommon()
+                    extension.configureLibrary(project)
                 }
             }
         }
+        project.commonTasks()
     }
 }

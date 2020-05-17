@@ -1,10 +1,35 @@
 object Versions {
-    const val gradle = "4.1.0-alpha04" // Update root/buildSrc/build.gradle.kts as well
-    const val kotlin = "1.3.71"
+    const val gradle = "4.1.0-alpha09" // Update root/buildSrc/build.gradle.kts as well
+    const val kotlin = "1.3.72"
     const val coreKtx = "1.2.0"
     const val appCompat = "1.1.0"
+    const val recyclerView = "1.1.0"
+    const val materialDesign = "1.2.0-alpha05"
+    const val constraintLayout = "2.0.0-beta4"
+    const val room = "2.2.5"
 
     const val junit4 = "4.12"
+    const val junit5Plugin = "1.6.0.1-SNAPSHOT" // Remove snapshot repo from buildscript on update
+    const val junit5 = "5.6.0"
+    const val junit5TestRunner = "1.0.0"
+    const val robolectric = "4.3"
+    const val fragmentTest = "1.2.4"
     const val axJunit4 = "1.1.1"
     const val axEspresso = "3.2.0"
+    const val axTestCore = "1.0.0"
+    const val axTestRunRules = "1.1.0"
+    const val axArchTesting = "2.1.0"
+    const val spek = "2.0.10"
+    const val mockk = "1.9"
+    const val dagger = "2.27"
+    const val navigation = "2.3.0-alpha06"
+    const val timber = "4.7.1"
+    const val databinding = "4.1.0-alpha05"
+    const val retrofit = "2.8.1"
+    const val kluent = "1.60"
+    const val coroutinesTest = "1.3.4"
+    const val gson = "2.8.1"
+    const val okhttp = "4.6.0"
+    const val lifecycle = "2.2.0"
+    const val okhttpIdlingResource = "1.0.0"
 }
