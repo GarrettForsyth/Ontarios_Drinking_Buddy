@@ -1,5 +1,6 @@
 package com.example.android.ontariosdrinkingbuddy.feature
 
+import androidx.arch.core.executor.testing.CountingTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
@@ -23,6 +24,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.TimeUnit
 
 /**
  *  FEATURE TEST
@@ -38,6 +40,9 @@ class UserBrowsesLCBOProductsFeatureTest {
     // GIVEN - the user has just opened the app
     @get:Rule
     val scenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @get:Rule
+    val countingTaskExecutorRule = CountingTaskExecutorRule()
 
     @get:Rule
     val dataBindingIdlingResourceRule = DataBindingIdlingResourceRule(scenarioRule)
@@ -69,6 +74,7 @@ class UserBrowsesLCBOProductsFeatureTest {
         // And - I click the query button
         onView(withId(R.id.browse_query_button))
             .perform(click())
+        countingTaskExecutorRule.drainTasks(3, TimeUnit.SECONDS) // Wait for live data
 
         // THEN - I should see a list of items filtered by my query
         val expectedItems =

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="Ontario's_Drinking_Buddy.app" target="1.8" />
-      <module name="Ontario's_Drinking_Buddy.browse" target="1.8" />
-      <module name="Ontario's_Drinking_Buddy.buildSrc" target="1.8" />
-      <module name="Ontario's_Drinking_Buddy.core" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>

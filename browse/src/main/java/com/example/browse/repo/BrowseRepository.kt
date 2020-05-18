@@ -11,6 +11,7 @@ import com.example.core.vo.LCBOItemQueryParameters
 import com.example.core.vo.NetworkBoundResource
 import com.example.core.vo.Resource
 import kotlinx.coroutines.flow.Flow
+import timber.log.Timber
 import javax.inject.Inject
 
 class BrowseRepository @Inject constructor(
@@ -24,12 +25,21 @@ class BrowseRepository @Inject constructor(
     ): Flow<Resource<List<LCBOItem>>> {
         return object : NetworkBoundResource<List<LCBOItem>, List<LCBOItem>>() {
             override suspend fun loadFromDb(): Flow<List<LCBOItem>> {
+                Timber.tag("Idling").d("Increment - load from db")
+                EspressoIdlingResource.increment()
                 val sqlQuery = supportSQLiteQueryConverter.convert(queryParameters)
-                return lcboItemDao.getLcboItems(sqlQuery)
+                val result = lcboItemDao.getLcboItems(sqlQuery)
+                Timber.tag("Idling").d("Decrement - load from db")
+                EspressoIdlingResource.decrement()
+                return result
             }
 
             override suspend fun saveNetworkResult(item: List<LCBOItem>) {
+                Timber.tag("Idling").d("Increment -  saveNetworkResult")
+                EspressoIdlingResource.increment()
                 lcboItemDao.insert(item)
+                Timber.tag("Idling").d("Decrement -  saveNetworkResult")
+                EspressoIdlingResource.decrement()
             }
 
             override fun shouldFetch(data: List<LCBOItem>?): Boolean {
@@ -37,13 +47,13 @@ class BrowseRepository @Inject constructor(
             }
 
             override suspend fun fetchFromNetwork(): ApiResponse<List<LCBOItem>> {
-                val options = optionsMapConverter.convert(queryParameters)
-
-                // TODO: Extract testing logic into a separate build flavour
+                Timber.tag("Idling").d("Increment - fetchFromNetwork")
                 EspressoIdlingResource.increment()
-                val results = lcboApiService.fetchLcboItems(options)
+                val options = optionsMapConverter.convert(queryParameters)
+                val result = lcboApiService.fetchLcboItems(options)
+                Timber.tag("Idling").d("Decrement - fetchFromNetwork")
                 EspressoIdlingResource.decrement()
-                return results
+                return result
             }
 
         }.asFlow()

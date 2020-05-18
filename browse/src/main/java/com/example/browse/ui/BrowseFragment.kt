@@ -68,7 +68,9 @@ class BrowseFragment : Fragment() {
     private fun observeSearchResults() {
         viewmodel.searchResults.observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                Status.SUCCESS -> lcboItemAdapter.submitList(it.data)
+                Status.SUCCESS -> {
+                    lcboItemAdapter.submitList(it.data)
+                }
                 Status.LOADING -> {
                 }
                 Status.ERROR -> {

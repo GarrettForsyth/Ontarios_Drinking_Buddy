@@ -38,6 +38,7 @@ fun BaseExtension.configureCommon() {
     }
 
     lintOptions {
+        isAbortOnError = false
         disable(
             "UnsafeExperimentalUsageError",
             "UnsafeExperimentalUsageWarning"

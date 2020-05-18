@@ -9,7 +9,7 @@ import androidx.test.runner.AndroidJUnitRunner
 class ODBTestRunner : AndroidJUnitRunner() {
     override fun onCreate(arguments: Bundle?) {
         // Override thread policy to use MockWebServer in tests.
-        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
+//        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
         super.onCreate(arguments)
     }
 

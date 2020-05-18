@@ -1,5 +1,5 @@
 object Versions {
-    const val gradle = "4.1.0-alpha09" // Update root/buildSrc/build.gradle.kts as well
+    const val gradle = "4.1.0-alpha10" // Update root/buildSrc/build.gradle.kts as well
     const val kotlin = "1.3.72"
     const val coreKtx = "1.2.0"
     const val appCompat = "1.1.0"

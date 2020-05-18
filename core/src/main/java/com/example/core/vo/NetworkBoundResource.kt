@@ -7,6 +7,7 @@ import com.example.core.api.ApiResponse
 import com.example.core.api.ApiSuccessResponse
 import kotlinx.coroutines.flow.*
 
+// TODO: Extract testing logic (IdlingResource) into a separate build flavour
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
     fun asFlow() = flow<Resource<ResultType>> {
@@ -17,7 +18,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
             when (val apiResponse = fetchFromNetwork()) {
                 is ApiSuccessResponse -> {
                     saveNetworkResult(processResponse(apiResponse))
-                    emitAll(loadFromDb().map { Resource.success(it) })
+                    emitAll(loadFromDb().map {
+                        Resource.success(it)
+                    })
                 }
                 is ApiErrorResponse -> {
                     onFetchFailed()

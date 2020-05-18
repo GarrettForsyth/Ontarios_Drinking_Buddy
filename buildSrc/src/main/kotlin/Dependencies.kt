@@ -135,7 +135,6 @@ object Libs {
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
 
         const val axTestRules = "androidx.test:rules:${Versions.axTestRunRules}"
-        const val axArchTesting = "androidx.arch.core:core-testing:${Versions.axArchTesting}"
 
         val all = listOf(
             roboletric,
@@ -147,8 +146,7 @@ object Libs {
             junit4,
             fragmentTest,
             coroutinesTest,
-            axTestRules,
-            axArchTesting
+            axTestRules
         )
     }
 
@@ -163,6 +161,7 @@ object Libs {
         const val axTestRunner = "androidx.test:runner:${Versions.axTestRunRules}"
         const val axTestCore = "androidx.test:core:${Versions.coreKtx}"
         const val axTestKtx = "androidx.test:core-ktx:${Versions.coreKtx}"
+        const val axArchTesting = "androidx.arch.core:core-testing:${Versions.axArchTesting}"
 
         val all = listOf(
             mockWebServer,
@@ -172,7 +171,8 @@ object Libs {
             axTestCore,
             axTestKtx,
             axTestRunner,
-            axJunit4
+            axJunit4,
+            axArchTesting
         )
     }
 

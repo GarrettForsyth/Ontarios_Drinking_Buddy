@@ -16,9 +16,14 @@ class TestBaseUrlModule {
     @Singleton
     @Named("baseUrl")
     fun provideBaseUrl(mockWebServer: MockWebServer): String {
-        return mockWebServer.url("/").toString()
-//        val app = ApplicationProvider.getApplicationContext<ODBTestApp>()
-//        return app.baseUrl
+        // Don't access MockWebServer from the main thread
+        lateinit var baseUrl: String
+        val thread = Thread(Runnable {
+            baseUrl = mockWebServer.url("/").toString()
+        })
+        thread.start()
+        thread.join()
+        return baseUrl
     }
 
     @Provides
